@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preparing Download…</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #fafafa;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h2 {
+    font-size: 22px;
+    color: #222;
+}
+
+.progress-box {
+    width: 90%;
+    max-width: 350px;
+    height: 12px;
+    background: #ddd;
+    border-radius: 20px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #007bff, #00d4ff);
+    border-radius: 20px;
+    transition: width 0.25s ease;
+}
+
+.status {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.loader {
+    margin: 25px auto;
+    border: 6px solid #eee;
+    border-top: 6px solid #007bff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+// Status messages to keep user waiting longer
+let messages = [
+    "Connecting to secure server…",
+    "Verifying file integrity…",
+    "Building download session…",
+    "Contacting global CDN…",
+    "Fetching high-speed route…",
+    "Almost done…"
+];
+
+let msgIndex = 0;
+
+// Cycle messages
+function cycleMessages() {
+    let status = document.getElementById("status");
+    status.textContent = messages[msgIndex];
+    msgIndex++;
+    if (msgIndex < messages.length) {
+        setTimeout(cycleMessages, 1600);
+    }
+}
+
+// Progress bar animation (10 seconds)
+function animateProgress() {
+    let bar = document.getElementById("bar");
+    let width = 0;
+    let interval = setInterval(function () {
+        if (width >= 100) {
+            clearInterval(interval);
+        } else {
+            width += 1.1;
+            bar.style.width = width + "%";
+        }
+    }, 110);
+}
+
+// *** FIRST Monetag call on page load ***
+window.onload = function() {
+    window.open("https://otieu.com/4/10259996", "_self");
+    animateProgress();
+    cycleMessages();
+};
+
+// *** SECOND Monetag trigger after 4 seconds (safe, allowed) ***
+setTimeout(function(){
+    window.open("https://otieu.com/4/10259996", "_self");
+}, 4000);
+
+// Final redirect after 11 seconds
+setTimeout(function(){
+    window.location.href = "https://www.mediafire.com/file/qdnaeuuqjii8k3i/Android_studio_new.zip/file";
+}, 11000);
+</script>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Preparing your download…</h2>
+
+    <div class="loader"></div>
+
+    <div class="progress-box">
+        <div id="bar" class="progress-bar"></div>
+    </div>
+
+    <p id="status" class="status">Initializing…</p>
+    <p style="color:#777; margin-top:25px;">Please wait, do not close this window.</p>
+</div>
+
+</body>
+</html>
